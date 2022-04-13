@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>dyCalendarJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="addons/dyCalendarJS-1.2.1/dycalendar.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    
+  </head>
+  <body>
+
+    <div id="main_calendar" class="dycalendar-container">
+    </div>
+
+    <!-- javascript -->
+    <script src="addons/dyCalendarJS-1.2.1/dycalendar-jquery.js"></script>
+    <script>
+    dycalendar.draw({
+      target: '#main_calendar',
+      type: 'month',
+      dayformat: 'full',
+      monthformat: 'full',
+      highlighttargetdate: true,
+      prevnextbutton: 'show'
+    });
+    </script>
+
+  </body>
+</html>

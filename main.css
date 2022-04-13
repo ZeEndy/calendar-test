@@ -1,0 +1,35 @@
+
+#main_calendar{
+    width: 100%;
+    padding:0px;
+}
+ 
+#main_calendar table{
+    width: 100%;
+    margin-top: 20px; 
+}
+#main_calendar table tr:nth-child(1) td
+{
+    background: #fff;
+    padding: #111;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+}
+#main_calendar table td
+{
+    background: #fff;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+#main_calendar table td:hover
+{
+    background: gray;
+    color: white !important;
+}
+
+.dycalendar-month-container .dycalendar-today-date, .dycalendar-month-container .dycalendar-target-date{
+    background: #000;
+    color: royalblue !important;
+}
