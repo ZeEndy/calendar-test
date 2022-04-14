@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="addons/dyCalendarJS-1.2.1/dycalendar.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
+    <link href="data_manage.php">
     
   </head>
   <body>
@@ -23,6 +24,12 @@
       highlighttargetdate: true,
       prevnextbutton: 'show'
     });
+    function get_date_data(input_date){
+    alert(input_date)
+    $.ajax({url:"get_date_date.php",success:function(data){
+        console.log("Data loaded: "+ data)
+        }})
+    }
     </script>
 
   </body>

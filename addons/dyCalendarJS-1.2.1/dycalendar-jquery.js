@@ -83,7 +83,8 @@
         count = 1;
         while (c <= 6) {
             td = $("<td>");
-            
+            td.attr("id","["+count+","+data.monthIndex+"]")
+            td.attr("OnClick","get_date_data(this.id)")
             td.html(count);
             if (data.today.date === count && data.today.monthIndex === data.monthIndex && option.highlighttoday === true) {
                 td.addClass("dycalendar-today-date");
@@ -106,7 +107,8 @@
                     return table;
                 }
                 td = $("<td>");
-                td.attr("OnClick","piss()")
+                td.attr("id","["+count+","+data.monthIndex+"]")
+                td.attr("OnClick","get_date_data(this.id)")
                 td.html(count);
                 if (data.today.date === count && data.today.monthIndex === data.monthIndex && option.highlighttoday === true) {
                     td.addClass("dycalendar-today-date");
@@ -546,6 +548,12 @@
 }(typeof window !== "undefined" ? window : this,
 typeof jQuery !== "undefined" ? jQuery : undefined));
 
-function piss(){
-    console.log("AAAAA")
+function get_date_data(input_date){
+    alert(input_date)
+    $.get("main.php")
+     .done(function(data){
+        console.log("Data loaded: "+ data +input_date)
+        return
+    });
+    
 }
