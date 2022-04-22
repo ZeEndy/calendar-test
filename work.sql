@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2022 at 02:00 PM
+-- Generation Time: Apr 22, 2022 at 11:41 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -28,9 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `iekarta1` (
-  `date` date DEFAULT current_timestamp(),
-  `operation_progress` varchar(255) NOT NULL,
-  `operation_info` varchar(255) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `operation_name` varchar(255) NOT NULL,
+  `operation_location` varchar(255) NOT NULL,
+  `operation_workshop` varchar(255) NOT NULL,
   `operation_workers` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -38,9 +39,18 @@ CREATE TABLE `iekarta1` (
 -- Dumping data for table `iekarta1`
 --
 
-INSERT INTO `iekarta1` (`date`, `operation_progress`, `operation_info`, `operation_workers`) VALUES
-(NULL, '[operation_1,5,0]', '[location ,workshop, xzgsjhnfd]', '[worker_id1,worker_id2,worker_id3]'),
-('0000-00-00', '[operation_1,5,0]', '[location ,workshop, test]\r\n', '[worker_id1,worker_id2,worker_id3]');
+INSERT INTO `iekarta1` (`date`, `operation_name`, `operation_location`, `operation_workshop`, `operation_workers`) VALUES
+('2022-04-20', 'name', 'location', 'workshop', 'Worker 1, Worker 2');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `iekarta1`
+--
+ALTER TABLE `iekarta1`
+  ADD PRIMARY KEY (`operation_location`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

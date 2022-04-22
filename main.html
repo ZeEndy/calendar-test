@@ -13,6 +13,7 @@
     <div id="main_calendar" class="dycalendar-container">
     </div>
     <div id="job_list">
+      <p>List of Jobs</p>
     </div>
     <!-- javascript -->
     <script src="addons/dyCalendarJS-1.2.1/dycalendar-jquery.js"></script>
@@ -30,34 +31,40 @@
     alert(input_date)
     $.ajax({url:"get_date_data.php?input_date="+input_date,success:function(data){
        console.log(data)
-       var shitty_obj=JSON.parse(data)
-        create_collapsable(shitty_obj.operation_name,shitty_obj.operation_location,shitty_obj.operation_workshop,shitty_obj.operation_workers)
+       if (!data.includes('No jobs found on this date')){
+         clear_jobs_list()
+        var shitty_obj=JSON.parse(data)
+          create_collapsable(shitty_obj.operation_name,shitty_obj.operation_location,shitty_obj.operation_workshop,shitty_obj.operation_workers)
+      }
       }})
     }
-    function create_collapsable(job_information,job_progress){
+    function create_collapsable(job_name,job_location,job_workshop,job_workers){
+      var random_id=Math.random()
       var job_list=$("#job_list");
       var job_button=$("<button>");
         job_button.attr("type","button");
         job_button.attr("class","collapsible");
-        job_button.append("<p>"+job_information+"</p>")
+//        job_button.attr("onclick","open_collapsable()")
+        job_button.append(job_name)
         job_list.append(job_button);
       var job_div=$("<div>")
+        job_div.attr("id","info")
+        job_div.attr("class","content")
+        //job_div.attr("style","animation-name:close_content; animation-duration: 0.01s;")
+        job_div.append("<p>job location:"+job_location+"</p>")
+        job_div.append("<p> job workshop:"+job_workshop+"</p>")
+        job_div.append("<p> assinged workers:"+job_workers+"</p>")
+      
+      job_button.append(job_div)
     }
-
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
+    function clear_jobs_list(){
+      return true
     }
+    /*
+    function open_collapsable(){
+     $(this).children("#info").attr("style","animation-name:open_content; animation-duration: 0.5s;")
+    }
+    */
     </script>
 
   </body>
