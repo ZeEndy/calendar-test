@@ -12,7 +12,8 @@
 
     <div id="main_calendar" class="dycalendar-container">
     </div>
-
+    <div id="job_list">
+    </div>
     <!-- javascript -->
     <script src="addons/dyCalendarJS-1.2.1/dycalendar-jquery.js"></script>
     <script>
@@ -21,14 +22,41 @@
       type: 'month',
       dayformat: 'full',
       monthformat: 'full',
-      highlighttargetdate: true,
+      highlighttoday : true,
+      highlighttargetdate: false,
       prevnextbutton: 'show'
     });
     function get_date_data(input_date){
     alert(input_date)
-    $.ajax({url:"get_date_date.php",success:function(data){
-        console.log("Data loaded: "+ data)
-        }})
+    $.ajax({url:"get_date_data.php?input_date="+input_date,success:function(data){
+       console.log(data)
+       var shitty_obj=JSON.parse(data)
+        create_collapsable(shitty_obj.operation_name,shitty_obj.operation_location,shitty_obj.operation_workshop,shitty_obj.operation_workers)
+      }})
+    }
+    function create_collapsable(job_information,job_progress){
+      var job_list=$("#job_list");
+      var job_button=$("<button>");
+        job_button.attr("type","button");
+        job_button.attr("class","collapsible");
+        job_button.append("<p>"+job_information+"</p>")
+        job_list.append(job_button);
+      var job_div=$("<div>")
+    }
+
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
     }
     </script>
 

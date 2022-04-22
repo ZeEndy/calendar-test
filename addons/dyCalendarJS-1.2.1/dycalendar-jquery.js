@@ -83,7 +83,7 @@
         count = 1;
         while (c <= 6) {
             td = $("<td>");
-            td.attr("id","["+count+","+data.monthIndex+"]")
+            td.attr("id",data.year+"-"+(data.monthIndex+1)+"-"+count)
             td.attr("OnClick","get_date_data(this.id)")
             td.html(count);
             if (data.today.date === count && data.today.monthIndex === data.monthIndex && option.highlighttoday === true) {
@@ -107,7 +107,7 @@
                     return table;
                 }
                 td = $("<td>");
-                td.attr("id","["+count+","+data.monthIndex+"]")
+                td.attr("id",data.year+"-"+(data.monthIndex+1)+"-"+count)
                 td.attr("OnClick","get_date_data(this.id)")
                 td.html(count);
                 if (data.today.date === count && data.today.monthIndex === data.monthIndex && option.highlighttoday === true) {
@@ -132,7 +132,7 @@
      * @param object option this is the settings object
      * @return html
      */
-    function drawCalendarMonthTable(data, option) {
+    function  drawCalendarMonthTable(data, option) {
 
         var
             table,
@@ -548,12 +548,3 @@
 }(typeof window !== "undefined" ? window : this,
 typeof jQuery !== "undefined" ? jQuery : undefined));
 
-function get_date_data(input_date){
-    alert(input_date)
-    $.get("main.php")
-     .done(function(data){
-        console.log("Data loaded: "+ data +input_date)
-        return
-    });
-    
-}
