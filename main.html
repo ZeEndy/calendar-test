@@ -28,13 +28,17 @@
       prevnextbutton: 'show'
     });
     function get_date_data(input_date){
-    alert(input_date)
     $.ajax({url:"get_date_data.php?input_date="+input_date,success:function(data){
-       console.log(data)
        clear_jobs_list()
+       var data_array=JSON.parse(data)
+       console.log(data_array)
        if (!data.includes('No jobs found on this date')){
-        var shitty_obj=JSON.parse(data)
+         for(i=0;i < data_array.length;i++){
+          var shitty_obj=data_array[i]
           create_collapsable(shitty_obj.operation_name,shitty_obj.operation_location,shitty_obj.operation_workshop,shitty_obj.operation_workers)
+        }
+      }else{
+        $("#job_list").append("<p>No jobs found on this date</p>");
       }
       }})
     }
@@ -61,7 +65,6 @@
       var job_list=$("#job_list");
       job_list.empty()
       job_list.append("<p>List of Jobs</p>")
-      console.log('fuck')
     }
     /*
     function open_collapsable(){
