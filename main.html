@@ -31,8 +31,8 @@
     alert(input_date)
     $.ajax({url:"get_date_data.php?input_date="+input_date,success:function(data){
        console.log(data)
+       clear_jobs_list()
        if (!data.includes('No jobs found on this date')){
-         clear_jobs_list()
         var shitty_obj=JSON.parse(data)
           create_collapsable(shitty_obj.operation_name,shitty_obj.operation_location,shitty_obj.operation_workshop,shitty_obj.operation_workers)
       }
@@ -58,7 +58,10 @@
       job_button.append(job_div)
     }
     function clear_jobs_list(){
-      return true
+      var job_list=$("#job_list");
+      job_list.empty()
+      job_list.append("<p>List of Jobs</p>")
+      console.log('fuck')
     }
     /*
     function open_collapsable(){
